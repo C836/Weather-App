@@ -15,10 +15,10 @@ export default function Input({ location_list, setList }: Input_Config) {
   }, [input]);
 
   useEffect(() => {
-    if (!location_list) {
-      setInput({ ...input, active_list: false });
-    } else {
+    if (location_list?.length) {
       setInput({ ...input, active_list: true });
+    } else {
+      setInput({ ...input, active_list: false });
     }
   }, [location_list]);
 
@@ -28,6 +28,7 @@ export default function Input({ location_list, setList }: Input_Config) {
     if (input_value.length) {
       setInput({ ...input, value: input_value });
     } else {
+      setInput({ ...input, active_list: false });
       setList([]);
     }
   };
