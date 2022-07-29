@@ -17,7 +17,11 @@ export default function Input({setList}:Input_Config) {
   const Handle_Input = (event: any) => {
     const input = event.target.value;
 
-    setInput(input)
+    if(input.length) {
+      setInput(input)
+    } else {
+      setList([])
+    }    
   }
 
   return <S.Input onChange={Handle_Input} />;
