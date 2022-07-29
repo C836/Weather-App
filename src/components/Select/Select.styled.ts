@@ -16,7 +16,7 @@ export const Select = styled.ul`
   border-top-right-radius: 0;
 `;
 
-export const Option = styled.li`
+export const Option = styled.button`
   display: flex;
   align-items: baseline;
   padding: 2% 3%;
@@ -33,6 +33,7 @@ export const Option = styled.li`
 
   p, small {
     pointer-events: none;
+    margin-right: 10px;
   }
 
   small {

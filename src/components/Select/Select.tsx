@@ -4,18 +4,18 @@ import { Properties_Config } from "../../services/search.config";
 
 export default function Select({location_list, location_data, setLocation}:Select_Config) {
 
-  const Select_Option = (event: React.MouseEvent<HTMLLIElement>) => {
-    const selected_location = event.currentTarget.textContent
+  const Select_Option = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const selected_location = event.currentTarget.value
     setLocation({ ...location_data, search: selected_location! })
   }
 
   return (
     <S.Select>
       {location_list?.map((item: Properties_Config) => (
-        <S.Option onClick={Select_Option}>
+        <S.Option value={item.city || item.country} onClick={Select_Option}>
           <p>
             {item.city}
-          </p> 
+          </p>
           <small>
             {item.country}
           </small>
