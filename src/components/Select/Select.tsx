@@ -14,10 +14,10 @@ export default function Select({location_list, location_data, setLocation}:Selec
       {location_list?.map((item: Properties_Config) => (
         <S.Option value={item.city || item.country} onClick={Select_Option}>
           <p>
-            {item.city}
+            {item.city || item.country}
           </p>
           <small>
-            {item.country}
+            {item.city && item.country}
           </small>
         </S.Option>
       ))}
