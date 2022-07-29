@@ -11,7 +11,7 @@ export const Input = styled.input<{active_list: boolean}>`
 
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(1rem, 5vw, 1.25rem);
-  color: #6AA2D1;
+  color: var(--main-color);
 
   border-bottom-left-radius: ${props => props.active_list && 0};
   border-bottom-right-radius: ${props => props.active_list && 0};

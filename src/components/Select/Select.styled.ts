@@ -20,7 +20,7 @@ export const Option = styled.option`
 
   font-family: "Montserrat", sans-serif;
   font-size: clamp(1rem, 5vw, 1.25rem);
-  color: #6aa2d1;
+  color: var(--main-color);
 
   small {
     font-size: clamp(0.8rem, 5vw, 0.9rem);
