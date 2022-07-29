@@ -22,6 +22,12 @@ export const Option = styled.option`
   font-size: clamp(1rem, 5vw, 1.25rem);
   color: var(--main-color);
 
+  cursor: pointer;
+
+  :hover{
+    color: var(--secondary-color);
+  }
+
   small {
     font-size: clamp(0.8rem, 5vw, 0.9rem);
   }
