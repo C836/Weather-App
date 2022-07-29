@@ -6,7 +6,6 @@ const API_KEY = import.meta.env.VITE_GEOAPIFY_KEY;
 function get_address(location_array: Location_Config[]){
   const result = location_array
   .map(object => ({
-    street: object.properties.street, 
     city: object.properties.city, 
     country: object.properties.country})
   )

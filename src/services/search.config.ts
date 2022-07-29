@@ -3,7 +3,6 @@ export interface Location_Config {
 }
 
 export interface Properties_Config {
-  street: string;
   city: string;
   country: string;
 }
