@@ -8,7 +8,16 @@ export default function Select({location_list}:Select_Config) {
     <S.Select>
       {location_list?.map((item: Properties_Config) => (
         <S.Option label={item.city} value={item.city}>
-          {item.city}
+          <p>
+            {item.street 
+            ? item.street 
+            : item.city}
+          </p> 
+          <small>
+            {item.street 
+            ? item.city + " " + item.country
+            : item.country}
+          </small>
         </S.Option>
       ))}
     </S.Select>
