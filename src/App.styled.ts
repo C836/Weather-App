@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+export const Home = styled.div``
+
 export const Input_Wrapper = styled.section`
   width: 600px;
   max-width: 90%;
