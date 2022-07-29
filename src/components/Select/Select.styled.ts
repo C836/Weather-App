@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Select = styled.div`
+export const Select = styled.ul`
   width: 100%;
   margin-top: 1px;
 
@@ -8,7 +8,6 @@ export const Select = styled.div`
   background-color: white;
   opacity: 75%;
 
-  overflow: visible;
   top: 100%;
   z-index: -1;
   position: absolute;
@@ -17,7 +16,7 @@ export const Select = styled.div`
   border-top-right-radius: 0;
 `;
 
-export const Option = styled.option`
+export const Option = styled.li`
   display: flex;
   align-items: baseline;
   padding: 2% 3%;
@@ -30,6 +29,10 @@ export const Option = styled.option`
 
   :hover{
     color: var(--secondary-color);
+  }
+
+  p, small {
+    pointer-events: none;
   }
 
   small {
