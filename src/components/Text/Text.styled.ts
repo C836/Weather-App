@@ -8,3 +8,11 @@ export const Headline = styled.h1`
   text-align: center;
   color: white;
 `
+
+export const Paragraph = styled.p<{size?: number, align?: string}>`
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+
+  font-size: ${props => props.size || "1rem"};
+  text-align: ${props => props.align || "left"};;
+`
