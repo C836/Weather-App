@@ -12,7 +12,7 @@ export default function Input({ location_list, setList }: Input_Config) {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [input]);
+  }, [input.value]);
 
   useEffect(() => {
     if (location_list?.length) {
