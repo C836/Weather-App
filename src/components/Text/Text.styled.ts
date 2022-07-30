@@ -17,3 +17,11 @@ export const Paragraph = styled.p<{size?: string, align?: string, lineHeight?: n
   text-align: ${props => props.align || "left"};
   line-height: ${props => props.lineHeight || 1};
 `
+
+export const Anchor = styled.a`
+  cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
+`
