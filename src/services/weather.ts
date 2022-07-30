@@ -5,20 +5,17 @@ const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
 function get_weather(weather_data: Weather_Config) {
-  const {
-    weather: { description, icon },
-    main: { temp, temp_max, temp_min },
-  } = weather_data;
+  const { weather, main } = weather_data;
 
   const result = {
-    weather: {
-      description: description,
-      icon: icon,
-    },
+    weather: [{
+      description: weather[0].description,
+      icon: weather[0].icon,
+    }],
     main: {
-      temp: temp,
-      temp_max: temp_max,
-      temp_min: temp_min,
+      temp: main.temp,
+      temp_max: main.temp_max,
+      temp_min: main.temp_min,
     },
   };
 
