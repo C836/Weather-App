@@ -12,16 +12,26 @@ import { Weather_Config } from './services/weather.config';
 
 import { capitalize } from './utils/capitalize'
 import { getDegrees } from './utils/getDegrees';
+import { history_request } from './services/history';
+import { History_Config } from './services/history.config';
+import { get_date } from './utils/getDate';
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
   const [location_data, setLocation] = useState<{search: string, data: Weather_Config | undefined}>({search: "", data: undefined})
+  const [location_history, setHistory] = useState<History_Config[]>()
+
   const { search, data } = location_data
 
   useEffect(() => {
     weather_request(location_data.search)
     .then(response => setLocation({...location_data, data: response}));
   },[location_data.search])
+
+  const get_history_handler = () => {
+    history_request(location_data.search)
+    .then(response => setHistory(response))
+  }
 
   return (
     <div>
@@ -43,7 +53,7 @@ function App() {
         </S.Input_Wrapper>
       </S.Home>
 
-      <S.Weather disabled={location_data.search ? false : true}>
+      <S.Weather disabled={location_data.search && !location_history ? false : true}>
         <Headline>
           {search.toUpperCase()}
         </Headline>
@@ -63,11 +73,35 @@ function App() {
         </Paragraph>
         
         <Paragraph size={".75rem"} lineHeight={5}>
-          <Anchor>Ver previsão para os próximos 5 dias</Anchor>
+          <Anchor onClick={get_history_handler}>Ver previsão para os próximos 5 dias</Anchor>
         </Paragraph>
       </S.Weather>
+
+      <S.History_Wrapper disabled={location_history ? false : true}>
+        <Headline>
+          {search.toUpperCase()}
+        </Headline>
+
+        <Paragraph size={"1.2rem"}>
+          Previsão para 5 dias
+        </Paragraph>
+
+        {location_history?.map((item, index) => (
+          <div>
+          {get_date(item.dt_txt)} 
+          <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}/>
+          {item.main.temp_min}
+          {item.main.temp_max}
+          {item.weather[0].description}
+          </div>
+        ))}     
+      </S.History_Wrapper>
     </div>
   )
 }
 
 export default App
+function get_history(): void {
+  throw new Error('Function not implemented.');
+}
+
