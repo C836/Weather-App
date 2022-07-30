@@ -16,8 +16,7 @@ function get_weather(weather_data: Weather_Config) {
       temp: main.temp,
       temp_max: main.temp_max,
       temp_min: main.temp_min,
-    },
-    dt_txt: weather_data.dt_txt
+    }
   };
 
   return result;
