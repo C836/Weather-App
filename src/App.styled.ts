@@ -13,7 +13,7 @@ export const Input_Wrapper = styled.section`
 
   position: absolute;
   top: 50%; left: 50%;
-  translate: -50% -50%;
+  transform: translate(-50%, -50%);
 
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ export const Weather = styled.div<{disabled: boolean}>`
 
   position: absolute;
   top: 50%; left: 50%;
-  translate: -50% -50%;
+  transform: translate(-50%, -50%);
 
   transition: opacity 0.3s;
 
