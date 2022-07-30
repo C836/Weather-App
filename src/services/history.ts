@@ -6,22 +6,21 @@ const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
 function get_history(history_data: History_Config) {
   const result: any = [];
-  const list = history_data.list[0];
 
   for (let index = 0; index < history_data.list.length; index++) {
+    const list = history_data.list[index];
+
     if (index % 8 === 0) {
       result.push({
-        list: {
-          weather: {
-            description: list.weather[0].description,
-            icon: list.weather[0].icon,
-          },
-          main: {
-            temp: list.main.temp,
-            temp_max: list.main.temp_max,
-            temp_min: list.main.temp_min,
-          },
+        weather: {
+          description: list.weather[0].description,
+          icon: list.weather[0].icon,
         },
+        main: {
+          temp: list.main.temp,
+          temp_max: list.main.temp_max,
+          temp_min: list.main.temp_min,
+        }
       });
     }
   }
