@@ -27,7 +27,7 @@ function App() {
     <div>
       <GlobalStyled background={background} />
 
-      <S.Home>
+      <S.Home disabled={location_data.search ? true : false}>
         <S.Input_Wrapper>
           <Headline>
             Como está o tempo hoje?

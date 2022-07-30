@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Home = styled.div``
+export const Home = styled.div<{disabled: boolean}>`
+  transition: opacity 0.3s;
+
+  opacity: ${props => props.disabled && 0};
+  pointer-events: ${props => props.disabled && "none"};
+`
 
 export const Input_Wrapper = styled.section`
   width: 600px;
