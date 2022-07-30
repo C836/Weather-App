@@ -9,10 +9,11 @@ export const Headline = styled.h1`
   color: white;
 `
 
-export const Paragraph = styled.p<{size?: number, align?: string}>`
+export const Paragraph = styled.p<{size?: string, align?: string, lineHeight?: number}>`
   font-family: 'Montserrat', sans-serif;
   color: white;
 
   font-size: ${props => props.size || "1rem"};
-  text-align: ${props => props.align || "left"};;
+  text-align: ${props => props.align || "left"};
+  line-height: ${props => props.lineHeight || 1};
 `
