@@ -5,6 +5,7 @@ import Input from './components/Input/Input'
 import Select from './components/Select/Select';
 import { Headline, Paragraph } from './components/Text/Text.styled';
 import { Properties_Config } from './services/search.config';
+import background from "./assets/img/background.jpg"
 import GlobalStyled from './global.styled';
 import { weather_request } from './services/weather';
 import { Weather_Config } from './services/weather.config';
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div>
-      <GlobalStyled />
+      <GlobalStyled background={background} />
 
       <S.Home disabled={location_data.search ? true : false}>
         <S.Input_Wrapper>
