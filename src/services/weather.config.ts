@@ -8,4 +8,5 @@ export interface Weather_Config {
     temp_min: number;
     temp_max: number;
   };
+  dt_txt: string;
 }
