@@ -1,4 +1,4 @@
-export function get_date(date: string) {
+export function getDate(date: string) {
   const week = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
   const month = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
