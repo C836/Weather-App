@@ -35,7 +35,7 @@ export function Weather({
 
   return (
     <S.Weather disabled={search && !locationForecast ? false : true}>
-      <Headline>{search.toUpperCase()}</Headline>
+      <Headline>{search?.toUpperCase()}</Headline>
 
       <Paragraph size={"1.2rem"}>
         {data && capitalize(data.weather[0].description)}

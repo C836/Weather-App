@@ -17,7 +17,7 @@ export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
 
   return (
     <S.Forecast disabled={locationForecast ? false : true}>
-      <Headline>{searchValue.toUpperCase()}</Headline>
+      <Headline>{searchValue?.toUpperCase()}</Headline>
 
       <Paragraph size={"1.2rem"}>{(Text as any)[lang].forecast}</Paragraph>
 
