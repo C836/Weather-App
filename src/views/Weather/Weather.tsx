@@ -4,7 +4,7 @@ import { capitalize, getDegrees, getIconUrl } from "../../utils";
 import { Anchor, Headline, Paragraph } from "../../components/Text/Text.styled";
 import { history_request } from "../../services/history";
 
-export default function Weather({
+export function Weather({
   locationData: { search, data },
   locationHistory,
   setHistory,

@@ -4,7 +4,7 @@ import { Headline } from "../../components/Text/Text.styled";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 
-export default function Home({
+export function Home({
   locationList,
   locationData,
   setList,
