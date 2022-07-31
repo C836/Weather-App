@@ -32,6 +32,14 @@ function App() {
 
   const [options, setOptions] = useState<OptionsConfig>(defaultOptions);
 
+  const goBack = () => {
+    if(location_forecast) {
+      setForecast(undefined)
+    } else {
+      setLocation({...location_data, search: undefined})
+    }
+  }
+
   return (
     <OptionsContext.Provider value={options}>
       <GlobalStyled background={background} />
@@ -54,7 +62,8 @@ function App() {
         locationForecast={location_forecast}
       />
 
-      <Interface 
+      <Interface
+        goBack={goBack}
         setOptions={setOptions}
       />
     </OptionsContext.Provider>
