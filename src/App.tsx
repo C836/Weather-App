@@ -14,7 +14,7 @@ import { capitalize } from './utils/capitalize'
 import { getDegrees } from './utils/getDegrees';
 import { history_request } from './services/history';
 import { History_List_Config } from './services/history.config';
-import History from './components/History/History';
+import { History } from './views/History/History';
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
@@ -77,17 +77,10 @@ function App() {
         </Paragraph>
       </S.Weather>
 
-      <S.History_Wrapper disabled={location_history ? false : true}>
-        <Headline>
-          {search.toUpperCase()}
-        </Headline>
-
-        <Paragraph size={"1.2rem"}>
-          Previsão para 5 dias
-        </Paragraph>
-
-        <History location_history={location_history!} />                  
-      </S.History_Wrapper>
+      <History
+        searchValue={search}
+        locationHistory={location_history}
+      />
     </div>
   )
 }

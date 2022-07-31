@@ -1,6 +1,23 @@
 import styled from "styled-components";
 
-export const History = styled.table`
+export const History = styled.section<{disabled: boolean}>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(700px + 8vw);
+  max-width: 90%;
+
+  opacity: ${(props) => props.disabled && 0};
+  pointer-events: ${(props) => props.disabled && "none"};
+`;
+
+
+export const Table = styled.table`
   margin-top: 40px;
 `;
 
@@ -45,3 +62,4 @@ export const Bar = styled(Column)`
     );
   }
 `;
+
