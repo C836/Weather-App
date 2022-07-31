@@ -27,7 +27,7 @@ export const OptionsContext = createContext(defaultOptions);
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
-  const [location_data, setLocation] = useState<{search: string, data: Weather_Config | undefined}>({search: "", data: undefined})
+  const [location_data, setLocation] = useState<{search: string | undefined, data: Weather_Config | undefined}>({search: undefined, data: undefined})
   const [location_forecast, setForecast] = useState<Forecast_List_Config[]>()
 
   const [options, setOptions] = useState<OptionsConfig>(defaultOptions);

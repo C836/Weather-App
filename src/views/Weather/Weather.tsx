@@ -23,7 +23,7 @@ export function Weather({
   const { lang, scale } = useContext(OptionsContext)
 
   const getForecast = () => {
-    forecast_request(search, lang)
+    forecast_request(search!, lang)
     .then((response) => setForecast(response));
   };
 

@@ -53,7 +53,7 @@ export function Home({
   };
 
   useEffect(() => {
-    weather_request(locationData.search, lang)
+    weather_request(locationData.search!, lang)
     .then(response => setLocation({...locationData, data: response}));
   },[locationData.search, lang])
 

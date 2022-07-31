@@ -3,7 +3,7 @@ import { Weather_Config } from "../../services/weather.config";
 
 export interface WeatherConfig {
   locationData: {
-    search: string;
+    search: string | undefined;
     data: Weather_Config | undefined;
   };
   locationForecast: Forecast_List_Config[] | undefined;
