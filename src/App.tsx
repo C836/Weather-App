@@ -16,6 +16,7 @@ import { history_request } from './services/history';
 import { History_List_Config } from './services/history.config';
 import { History } from './views/History/History';
 import Home from './views/Home/Home';
+import Weather from './views/Weather/Weather';
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
@@ -29,11 +30,6 @@ function App() {
     .then(response => setLocation({...location_data, data: response}));
   },[location_data.search])
 
-  const get_history_handler = () => {
-    history_request(location_data.search)
-    .then(response => setHistory(response))
-  }
-
   return (
     <div>
       <GlobalStyled background={background} />
@@ -45,29 +41,11 @@ function App() {
         setLocation = {setLocation}
       />
 
-      <S.Weather disabled={location_data.search && !location_history ? false : true}>
-        <Headline>
-          {search.toUpperCase()}
-        </Headline>
-
-        <Paragraph size={"1.2rem"}>
-          {data && capitalize(data.weather[0].description)}
-        </Paragraph>
-
-        <S.Weather_Wrapper>
-          <Paragraph size={"4rem"}>{data && getDegrees(data?.main.temp)}</Paragraph>
-          <img src={`http://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png`}/>
-        </S.Weather_Wrapper>
-
-        <Paragraph size={"1.2rem"}>
-          <b>MAX: </b>{data && getDegrees(data?.main.temp_max)} 
-          <b>MIN: </b>{data && getDegrees(data?.main.temp_min)}
-        </Paragraph>
-        
-        <Paragraph size={".75rem"} lineHeight={5}>
-          <Anchor onClick={get_history_handler}>Ver previsão para os próximos 5 dias</Anchor>
-        </Paragraph>
-      </S.Weather>
+      <Weather 
+        locationData = {location_data}
+        locationHistory = {location_history}
+        setHistory = {setHistory}
+      />
 
       <History
         searchValue={search}
