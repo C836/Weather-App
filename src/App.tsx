@@ -63,6 +63,7 @@ function App() {
       />
 
       <Interface
+        searchValue = {location_data.search}
         goBack={goBack}
         setOptions={setOptions}
       />
