@@ -39,3 +39,18 @@ export const Weather_Wrapper = styled.div`
   display: flex ;
   align-items: center;
 `
+
+export const History_Wrapper = styled.div<{disabled: boolean}>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(700px + 8vw);
+  max-width: 90%;
+
+  opacity: ${props => props.disabled && 0};
+  pointer-events: ${props => props.disabled && "none"};
+`
