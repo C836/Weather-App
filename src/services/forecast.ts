@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Forecast_Data_Config } from "./forecast.config";
 
-const BASE_URL = "http://api.openweathermap.org/data/2.5/forecast";
+const BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
 const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
 function get_forecast(forecast_data: Forecast_Data_Config) {
