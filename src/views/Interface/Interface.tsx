@@ -8,6 +8,7 @@ import { Language } from "../../components/index";
 
 import { OptionsContext } from "../../App";
 import { Paragraph } from "../../components/Text/Text.styled";
+import { Switch } from "../../components/Switch/Switch.styled";
 
 const Text = translations.Interface;
 
@@ -26,20 +27,35 @@ export function Interface({ setOptions }: InterfaceConfig) {
     setOptions({ ...options, lang: language });
   };
 
+  const changeScale = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.checked
+    const scale = input === true ? "C" : "F"
+
+    setOptions({ ...options, scale: scale})
+  }
+
   return (
     <S.Interface>
-      <S.Languages>
-        {Languages.map((lang, index) => (
-          <Language
-            key={index}
-            alt={lang.lang}
-            src={lang.img}
-            onClick={changeLanguage}
-          />
-        ))}
-      </S.Languages>
+      <S.ScaleSelector>
+        °F <Switch onChange={changeScale}/> °C
+      </S.ScaleSelector>
 
-      <Paragraph align="center" size=".7">{(Text as any)[options.lang].selected}</Paragraph>
+      <S.LanguageSelector>
+        <S.Languages>
+          {Languages.map((lang, index) => (
+            <Language
+              key={index}
+              alt={lang.lang}
+              src={lang.img}
+              onClick={changeLanguage}
+            />
+          ))}
+        </S.Languages>
+
+        <Paragraph align="center" size=".7">
+          {(Text as any)[options.lang].selected}
+        </Paragraph>
+      </S.LanguageSelector>
     </S.Interface>
   );
 }

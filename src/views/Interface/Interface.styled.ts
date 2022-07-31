@@ -1,6 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Interface = styled.div`
+export const Interface = styled.div``;
+
+export const LanguageSelector = styled.div`
   padding-bottom: 20px;
 
   position: fixed;
@@ -11,7 +13,7 @@ export const Interface = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 export const Languages = styled.div`
   padding-bottom: 12px;
@@ -19,4 +21,6 @@ export const Languages = styled.div`
   display: flex;
   align-items: center;
   column-gap: 12px;
-`
+`;
+
+export const ScaleSelector = styled.div``;
