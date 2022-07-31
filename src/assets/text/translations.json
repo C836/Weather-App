@@ -9,5 +9,19 @@
     "es": {
       "selected": "Idioma seleccionado: Español"
     }
+  },
+  "Home": {
+    "pt": {
+      "heading": "Como está o tempo hoje?",
+      "placeholder": "Digite o nome da cidade"
+    },
+    "en": {
+      "heading": "How is the weather today?",
+      "placeholder": "Enter the city name below"
+    },
+    "es": {
+      "heading": "¿Cómo está el tiempo hoy?",
+      "placeholder": "Introduzca el nombre de la ciudad"
+    }
   }
 }
