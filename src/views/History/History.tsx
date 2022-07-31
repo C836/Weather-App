@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import * as S from "./History.styled";
 import { HistoryConfig } from "./History.config";
 
@@ -5,7 +7,11 @@ import { Headline, Paragraph } from "../../components/Text/Text.styled";
 
 import { capitalize, getDate, getDegrees, getIconUrl } from "../../utils/index";
 
+import { OptionsContext } from "../../App";
+
 export function History({ searchValue, locationHistory }: HistoryConfig) {
+  const { lang } = useContext(OptionsContext)
+
   return (
     <S.History disabled={locationHistory ? false : true}>
       <Headline>{searchValue.toUpperCase()}</Headline>
@@ -16,7 +22,7 @@ export function History({ searchValue, locationHistory }: HistoryConfig) {
         {locationHistory?.map((item, index) => (
           <S.Row>
             <S.Column>
-              <b>{getDate(item.dt_txt)}</b>
+              <b>{getDate(item.dt_txt, lang)}</b>
             </S.Column>
 
             <S.Column>
