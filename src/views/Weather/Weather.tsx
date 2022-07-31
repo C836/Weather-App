@@ -8,7 +8,7 @@ import { translations } from "../../assets";
 
 import { forecast_request } from "../../services/forecast";
 
-import { capitalize, getDegrees, getIconUrl } from "../../utils";
+import { capitalize, getTemp, getIconUrl } from "../../utils";
 
 import { OptionsContext } from "../../App";
 
@@ -20,7 +20,7 @@ export function Weather({
   setForecast,
 }: WeatherConfig) {
 
-  const { lang } = useContext(OptionsContext)
+  const { lang, scale } = useContext(OptionsContext)
 
   const getForecast = () => {
     forecast_request(search, lang)
@@ -43,7 +43,7 @@ export function Weather({
 
       <S.Display>
         <Paragraph size={"4rem"}>
-          {data && getDegrees(data?.main.temp)}
+          {data && getTemp(data?.main.temp, scale)}
         </Paragraph>
 
         <img src={data && getIconUrl(data?.weather[0].icon)}/>
@@ -51,9 +51,9 @@ export function Weather({
 
       <Paragraph size={"1.2rem"}>
         <b>MAX: </b>
-        {data && getDegrees(data?.main.temp_max)} 
+        {data && getTemp(data?.main.temp_max, scale)} 
         <b>MIN: </b>
-        {data && getDegrees(data?.main.temp_min)}
+        {data && getTemp(data?.main.temp_min, scale)}
       </Paragraph>
 
       <Paragraph size={".75rem"} lineHeight={5}>

@@ -6,14 +6,14 @@ import { ForecastConfig } from "./Forecast.config";
 import { Headline, Paragraph } from "../../components/Text/Text.styled";
 import { translations } from "../../assets";
 
-import { capitalize, getDate, getDegrees, getIconUrl } from "../../utils/index";
+import { capitalize, getDate, getTemp, getIconUrl } from "../../utils/index";
 
 import { OptionsContext } from "../../App";
 
 const Text = translations.Forecast
 
 export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
-  const { lang } = useContext(OptionsContext)
+  const { lang, scale } = useContext(OptionsContext)
 
   return (
     <S.Forecast disabled={locationForecast ? false : true}>
@@ -33,13 +33,13 @@ export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
             </S.Column>
 
             <S.Column>
-              {getDegrees(item.main.temp_min)}
+              {getTemp(item.main.temp_min, scale)}
             </S.Column>
 
             <S.Bar />
 
             <S.Column>
-              {getDegrees(item.main.temp_max)}
+              {getTemp(item.main.temp_max, scale)}
             </S.Column>
 
             <S.Description>
