@@ -23,5 +23,27 @@
       "heading": "¿Cómo está el tiempo hoy?",
       "placeholder": "Introduzca el nombre de la ciudad"
     }
+  },
+  "Weather": {
+    "pt": {
+      "view_forecast": "Ver previsão para os próximos 5 dias"
+    },
+    "en": {
+      "view_forecast": "Forecast for the next 5 days"
+    },
+    "es": {
+      "view_forecast": "Ver previsión para los próximos 5 días"
+    }
+  },
+  "Forecast": {
+    "pt": {
+      "forecast": "Previsão para os próximos 5 dias"
+    },
+    "en": {
+      "forecast": "Forecast for the next 5 days"
+    },
+    "es": {
+      "forecast": "Previsión para los próximos 5 días"
+    }
   }
 }

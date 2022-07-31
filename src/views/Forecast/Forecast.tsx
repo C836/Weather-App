@@ -4,10 +4,13 @@ import * as S from "./Forecast.styled";
 import { ForecastConfig } from "./Forecast.config";
 
 import { Headline, Paragraph } from "../../components/Text/Text.styled";
+import { translations } from "../../assets";
 
 import { capitalize, getDate, getDegrees, getIconUrl } from "../../utils/index";
 
 import { OptionsContext } from "../../App";
+
+const Text = translations.Forecast
 
 export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
   const { lang } = useContext(OptionsContext)
@@ -16,7 +19,7 @@ export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
     <S.Forecast disabled={locationForecast ? false : true}>
       <Headline>{searchValue.toUpperCase()}</Headline>
 
-      <Paragraph size={"1.2rem"}>Previsão para 5 dias</Paragraph>
+      <Paragraph size={"1.2rem"}>{(Text as any)[lang].forecast}</Paragraph>
 
       <S.Table>
         {locationForecast?.map((item, index) => (

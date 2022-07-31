@@ -1,10 +1,18 @@
+import { useContext, useEffect } from "react";
+
 import * as S from "./Weather.styled";
 import { WeatherConfig } from "./Weather.config";
-import { capitalize, getDegrees, getIconUrl } from "../../utils";
-import { Anchor, Headline, Paragraph } from "../../components/Text/Text.styled";
+
+import { Anchor, Headline, Paragraph } from "../../components/index";
+import { translations } from "../../assets";
+
 import { forecast_request } from "../../services/forecast";
-import { useContext, useEffect } from "react";
+
+import { capitalize, getDegrees, getIconUrl } from "../../utils";
+
 import { OptionsContext } from "../../App";
+
+const Text = translations.Weather
 
 export function Weather({
   locationData: { search, data },
@@ -50,7 +58,7 @@ export function Weather({
 
       <Paragraph size={".75rem"} lineHeight={5}>
         <Anchor onClick={getForecast}>
-          Ver previsão para os próximos 5 dias
+          {(Text as any)[lang].view_forecast}
         </Anchor>
       </Paragraph>
     </S.Weather>
