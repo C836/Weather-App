@@ -9,7 +9,10 @@ export default createGlobalStyle<{background: string}>`
   body {
     width: 100%;
     height: 100%;
-    background-image: url(${props => props.background});
+    background-image: linear-gradient(
+      #00000020, 
+      #00000020
+    ), url(${props => props.background});
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
