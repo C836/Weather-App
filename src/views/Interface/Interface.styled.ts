@@ -23,4 +23,15 @@ export const Languages = styled.div`
   column-gap: 12px;
 `;
 
-export const ScaleSelector = styled.div``;
+export const ScaleSelector = styled.div`
+  position: absolute;
+  top: 2.5vh;
+  right: 3vw;
+
+  display: flex;
+  align-items: center;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  color: white;
+`;
