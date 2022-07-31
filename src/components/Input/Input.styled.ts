@@ -19,4 +19,9 @@ export const Input = styled.input<InputConfig>`
 
   border-bottom-left-radius: ${(props) => (props.activeList ? 0 : "auto")};
   border-bottom-right-radius: ${(props) => (props.activeList ? 0 : "auto")};
+
+  ::placeholder {
+    color: var(--main-color);
+    opacity: 1;
+  }
 `;
