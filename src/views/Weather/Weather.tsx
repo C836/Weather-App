@@ -2,31 +2,31 @@ import * as S from "./Weather.styled";
 import { WeatherConfig } from "./Weather.config";
 import { capitalize, getDegrees, getIconUrl } from "../../utils";
 import { Anchor, Headline, Paragraph } from "../../components/Text/Text.styled";
-import { history_request } from "../../services/history";
+import { forecast_request } from "../../services/forecast";
 import { useContext, useEffect } from "react";
 import { OptionsContext } from "../../App";
 
 export function Weather({
   locationData: { search, data },
-  locationHistory,
-  setHistory,
+  locationForecast,
+  setForecast,
 }: WeatherConfig) {
 
   const { lang } = useContext(OptionsContext)
 
-  const getHistory = () => {
-    history_request(search, lang)
-    .then((response) => setHistory(response));
+  const getForecast = () => {
+    forecast_request(search, lang)
+    .then((response) => setForecast(response));
   };
 
   useEffect(() => {
-    if(locationHistory) {
-      getHistory()
+    if(locationForecast) {
+      getForecast()
     }
   }, [lang])
 
   return (
-    <S.Weather disabled={search && !locationHistory ? false : true}>
+    <S.Weather disabled={search && !locationForecast ? false : true}>
       <Headline>{search.toUpperCase()}</Headline>
 
       <Paragraph size={"1.2rem"}>
@@ -49,7 +49,7 @@ export function Weather({
       </Paragraph>
 
       <Paragraph size={".75rem"} lineHeight={5}>
-        <Anchor onClick={getHistory}>
+        <Anchor onClick={getForecast}>
           Ver previsão para os próximos 5 dias
         </Anchor>
       </Paragraph>

@@ -6,11 +6,11 @@ import background from "./assets/img/background.jpg"
 
 import { Properties_Config } from './services/search.config';
 import { Weather_Config } from './services/weather.config';
-import { History_List_Config } from './services/history.config';
+import { Forecast_List_Config } from './services/forecast.config';
 
 import { Home } from './views/Home/Home';
 import { Weather } from './views/Weather/Weather';
-import { History } from './views/History/History';
+import { Forecast } from './views/Forecast/Forecast';
 import { Interface }from './views/Interface/Interface';
 
 export interface OptionsConfig {
@@ -28,7 +28,7 @@ export const OptionsContext = createContext(defaultOptions);
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
   const [location_data, setLocation] = useState<{search: string, data: Weather_Config | undefined}>({search: "", data: undefined})
-  const [location_history, setHistory] = useState<History_List_Config[]>()
+  const [location_forecast, setForecast] = useState<Forecast_List_Config[]>()
 
   const [options, setOptions] = useState<OptionsConfig>(defaultOptions);
 
@@ -45,13 +45,13 @@ function App() {
 
       <Weather 
         locationData = {location_data}
-        locationHistory = {location_history}
-        setHistory = {setHistory}
+        locationForecast = {location_forecast}
+        setForecast = {setForecast}
       />
 
-      <History
+      <Forecast
         searchValue={location_data.search}
-        locationHistory={location_history}
+        locationForecast={location_forecast}
       />
 
       <Interface 

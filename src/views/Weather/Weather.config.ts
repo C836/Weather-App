@@ -1,4 +1,4 @@
-import { History_List_Config } from "../../services/history.config";
+import { Forecast_List_Config } from "../../services/forecast.config";
 import { Weather_Config } from "../../services/weather.config";
 
 export interface WeatherConfig {
@@ -6,8 +6,8 @@ export interface WeatherConfig {
     search: string;
     data: Weather_Config | undefined;
   };
-  locationHistory: History_List_Config[] | undefined;
-  setHistory: React.Dispatch<
-    React.SetStateAction<History_List_Config[] | undefined>
+  locationForecast: Forecast_List_Config[] | undefined;
+  setForecast: React.Dispatch<
+    React.SetStateAction<Forecast_List_Config[] | undefined>
   >;
 }

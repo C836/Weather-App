@@ -59,9 +59,9 @@ export function Home({
 
   return (
     <S.Home disabled={locationData.search ? true : false}>
-      <Headline>{Text[lang].heading}</Headline>
+      <Headline>{(Text as any)[lang].heading}</Headline>
       <Input
-        placeholder={Text[lang].placeholder}
+        placeholder={(Text as any)[lang].placeholder}
         activeList={locationList?.length ? true : false}
         onChange={Handle_Input}
       />

@@ -1,14 +1,14 @@
 import axios from "axios";
-import { History_Data_Config } from "./history.config";
+import { Forecast_Data_Config } from "./forecast.config";
 
 const BASE_URL = "http://api.openweathermap.org/data/2.5/forecast";
 const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
-function get_history(history_data: History_Data_Config) {
+function get_forecast(forecast_data: Forecast_Data_Config) {
   const result: any = [];
 
-  for (let index = 0; index < history_data.list.length; index++) {
-    const list = history_data.list[index];
+  for (let index = 0; index < forecast_data.list.length; index++) {
+    const list = forecast_data.list[index];
 
     if (index % 8 === 0) {
       result.push({
@@ -29,13 +29,13 @@ function get_history(history_data: History_Data_Config) {
   return result;
 }
 
-export async function history_request( search_param: string, lang?: string ) {
+export async function forecast_request( search_param: string, lang?: string ) {
 
   const url = BASE_URL + `?q=${search_param}&lang=${lang}&appid=${API_KEY}`;
 
   const data = await axios.get(url).then((response) => {
-    const history_data = response.data;
-    const result = get_history(history_data);
+    const forecast_data = response.data;
+    const result = get_forecast(forecast_data);
     return result;
   });
 

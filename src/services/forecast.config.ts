@@ -1,8 +1,8 @@
-export interface History_Data_Config {
-  list: History_List_Config[];
+export interface Forecast_Data_Config {
+  list: Forecast_List_Config[];
 }
 
-export interface History_List_Config {
+export interface Forecast_List_Config {
   weather: {
     description: string;
     icon: string;

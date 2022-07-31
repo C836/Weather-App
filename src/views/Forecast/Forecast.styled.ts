@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const History = styled.section<{disabled: boolean}>`
+export const Forecast = styled.section<{disabled: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;

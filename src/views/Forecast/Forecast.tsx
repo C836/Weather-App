@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import * as S from "./History.styled";
-import { HistoryConfig } from "./History.config";
+import * as S from "./Forecast.styled";
+import { ForecastConfig } from "./Forecast.config";
 
 import { Headline, Paragraph } from "../../components/Text/Text.styled";
 
@@ -9,17 +9,17 @@ import { capitalize, getDate, getDegrees, getIconUrl } from "../../utils/index";
 
 import { OptionsContext } from "../../App";
 
-export function History({ searchValue, locationHistory }: HistoryConfig) {
+export function Forecast({ searchValue, locationForecast }: ForecastConfig) {
   const { lang } = useContext(OptionsContext)
 
   return (
-    <S.History disabled={locationHistory ? false : true}>
+    <S.Forecast disabled={locationForecast ? false : true}>
       <Headline>{searchValue.toUpperCase()}</Headline>
 
       <Paragraph size={"1.2rem"}>Previsão para 5 dias</Paragraph>
 
       <S.Table>
-        {locationHistory?.map((item, index) => (
+        {locationForecast?.map((item, index) => (
           <S.Row>
             <S.Column>
               <b>{getDate(item.dt_txt, lang)}</b>
@@ -45,6 +45,6 @@ export function History({ searchValue, locationHistory }: HistoryConfig) {
           </S.Row>
         ))}
       </S.Table>
-    </S.History>
+    </S.Forecast>
   );
 }
