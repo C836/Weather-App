@@ -15,6 +15,7 @@ import { getDegrees } from './utils/getDegrees';
 import { history_request } from './services/history';
 import { History_List_Config } from './services/history.config';
 import { History } from './views/History/History';
+import Home from './views/Home/Home';
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
@@ -37,21 +38,12 @@ function App() {
     <div>
       <GlobalStyled background={background} />
 
-      <S.Home disabled={location_data.search ? true : false}>
-        <S.Input_Wrapper>
-          <Headline>
-            Como está o tempo hoje?
-          </Headline>
-          <Input 
-            location_list={location_list} 
-            setList={setList} />
-          <Select 
-            location_list={location_list}
-            setList={setList}
-            location_data={location_data}
-            setLocation={setLocation} />
-        </S.Input_Wrapper>
-      </S.Home>
+      <Home 
+        locationList = {location_list}
+        locationData = {location_data}
+        setList = {setList}
+        setLocation = {setLocation}
+      />
 
       <S.Weather disabled={location_data.search && !location_history ? false : true}>
         <Headline>
