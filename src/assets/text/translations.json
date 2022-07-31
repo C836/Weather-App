@@ -1,13 +1,13 @@
 {
   "Interface": {
     "pt": {
-      "lang": "Idioma selecionado: Português"
+      "selected": "Idioma selecionado: Português"
     },
     "en": {
-      "lang": "Selected language: English"
+      "selected": "Selected language: English"
     },
     "es": {
-      "lang": "Idioma seleccionado: Español"
+      "selected": "Idioma seleccionado: Español"
     }
   }
 }
