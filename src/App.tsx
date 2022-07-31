@@ -11,15 +11,15 @@ import { History_List_Config } from './services/history.config';
 import { Home } from './views/Home/Home';
 import { Weather } from './views/Weather/Weather';
 import { History } from './views/History/History';
+import { Interface }from './views/Interface/Interface';
 
-
-interface OptionsConfig {
+export interface OptionsConfig {
   lang: string;
   scale: string;
 }
 
 const defaultOptions = {
-  lang: "pt_br",
+  lang: "pt",
   scale: "C",
 };
 
@@ -52,6 +52,10 @@ function App() {
       <History
         searchValue={location_data.search}
         locationHistory={location_history}
+      />
+
+      <Interface 
+        setOptions={setOptions}
       />
     </OptionsContext.Provider>
   )
