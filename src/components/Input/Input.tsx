@@ -3,8 +3,8 @@ import { Input_Config } from "./Input.config";
 import { search_request } from "../../services/search";
 import { useEffect, useState } from "react";
 
-export default function Input({ location_list, setList }: Input_Config) {
-  const [input, setInput] = useState({ value: "", active_list: false });
+export default function Input({ locationList, setList }: Input_Config) {
+  const [input, setInput] = useState({ value: "", activeList: false });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,12 +15,12 @@ export default function Input({ location_list, setList }: Input_Config) {
   }, [input.value]);
 
   useEffect(() => {
-    if (location_list?.length) {
-      setInput({ ...input, active_list: true });
+    if (locationList?.length) {
+      setInput({ ...input, activeList: true });
     } else {
-      setInput({ ...input, active_list: false });
+      setInput({ ...input, activeList: false });
     }
-  }, [location_list]);
+  }, [locationList]);
 
   const Handle_Input = (event: any) => {
     const input_value = event.target.value;
@@ -28,10 +28,10 @@ export default function Input({ location_list, setList }: Input_Config) {
     if (input_value.length) {
       setInput({ ...input, value: input_value });
     } else {
-      setInput({ ...input, active_list: false });
+      setInput({ ...input, activeList: false });
       setList([]);
     }
   };
 
-  return <S.Input active_list={input.active_list} onChange={Handle_Input} />;
+  return <S.Input activeList={input.activeList} onChange={Handle_Input} />;
 }

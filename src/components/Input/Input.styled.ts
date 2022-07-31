@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Input = styled.input<{active_list: boolean}>`
+export const Input = styled.input<{activeList: boolean}>`
   width: 100%;
   padding: 3%;
 
