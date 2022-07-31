@@ -13,13 +13,13 @@ import { Weather_Config } from './services/weather.config';
 import { capitalize } from './utils/capitalize'
 import { getDegrees } from './utils/getDegrees';
 import { history_request } from './services/history';
-import { History_Config } from './services/history.config';
-import { get_date } from './utils/getDate';
+import { History_List_Config } from './services/history.config';
+import History from './components/History/History';
 
 function App() {
   const [location_list, setList] = useState<Properties_Config[] | undefined>();
   const [location_data, setLocation] = useState<{search: string, data: Weather_Config | undefined}>({search: "", data: undefined})
-  const [location_history, setHistory] = useState<History_Config[]>()
+  const [location_history, setHistory] = useState<History_List_Config[]>()
 
   const { search, data } = location_data
 
@@ -86,22 +86,10 @@ function App() {
           Previsão para 5 dias
         </Paragraph>
 
-        {location_history?.map((item, index) => (
-          <div>
-          {get_date(item.dt_txt)} 
-          <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}/>
-          {item.main.temp_min}
-          {item.main.temp_max}
-          {item.weather[0].description}
-          </div>
-        ))}     
+        <History location_history={location_history!} />                  
       </S.History_Wrapper>
     </div>
   )
 }
 
 export default App
-function get_history(): void {
-  throw new Error('Function not implemented.');
-}
-
