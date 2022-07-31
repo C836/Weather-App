@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Home = styled.div<{ disabled: boolean }>`
-  width: 600px;
+  width: 650px;
   max-width: 90%;
 
   position: absolute;

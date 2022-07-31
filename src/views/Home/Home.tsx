@@ -9,6 +9,9 @@ import { search_request } from "../../services/search";
 import { weather_request } from "../../services/weather";
 
 import { OptionsContext } from "../../App";
+import { translations } from "../../assets";
+
+const Text = translations.Home;
 
 export function Home({
   locationList,
@@ -16,62 +19,68 @@ export function Home({
   setList,
   setLocation,
 }: HomeConfig) {
-  const [input, setInput] = useState({ value: "", activeList: false });
+  const { lang } = useContext(OptionsContext);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      search_request(input.value).then((data) => setList(data));
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [input.value]);
-
-  useEffect(() => {
-    if (locationList?.length) {
-      setInput({ ...input, activeList: true });
-    } else {
-      setInput({ ...input, activeList: false });
-    }
-  }, [locationList]);
+  const [input, setInput] = useState("");
 
   const Handle_Input = (event: any) => {
     const input_value = event.target.value;
 
     if (input_value.length) {
-      setInput({ ...input, value: input_value });
+      setInput(input_value);
     } else {
-      setInput({ ...input, activeList: false });
       setList([]);
     }
   };
 
+  useEffect(() => {
+    if (input.length > 2) {
+      const timer = setTimeout(() => {
+        search_request(input).then((data) => setList(data));
+      }, 200);
+
+      return () => clearTimeout(timer);
+    }
+  }, [input]);
+
   const Select_Option = (event: React.MouseEvent<HTMLButtonElement>) => {
+    
     const selectedLocation = event.currentTarget.value;
 
     setLocation({ ...locationData, search: selectedLocation! });
+    setInput("");
     setList([]);
   };
 
-  const { lang } = useContext(OptionsContext);
-
   useEffect(() => {
-    weather_request(locationData.search, lang).then((response) =>
-      setLocation({ ...locationData, data: response })
-    );
-  }, [locationData.search]);
+    weather_request(locationData.search, lang)
+    .then(response => setLocation({...locationData, data: response}));
+  },[locationData.search])
 
   return (
     <S.Home disabled={locationData.search ? true : false}>
-      <Headline>Como está o tempo hoje?</Headline>
-      <Input activeList={input.activeList} onChange={Handle_Input} />
-      
+      <Headline>{Text[lang].heading}</Headline>
+      <Input
+        placeholder={Text[lang].placeholder}
+        activeList={locationList?.length ? true : false}
+        onChange={Handle_Input}
+      />
+
       <Select>
-        {locationList?.map((item) => (
-          <Option value={item.city || item.country} onClick={Select_Option}>
-            <p>{item.city || item.country}</p>
-            <small>{item.city && item.country}</small>
-          </Option>
-        ))}
+        {locationList?.map((item, index) => {
+          const { city, country } = item;
+
+          return (
+            <Option 
+            key={index} 
+            value={city || country} 
+            onClick={Select_Option}
+            >
+              <p>{city || country}</p>
+              <small>{city && country}</small>
+            </Option>
+          );
+        })}
       </Select>
     </S.Home>
   );

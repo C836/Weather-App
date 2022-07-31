@@ -39,7 +39,7 @@ export function Interface({ setOptions }: InterfaceConfig) {
         ))}
       </S.Languages>
 
-      <Paragraph size=".7">{Text[options.lang].selected}</Paragraph>
+      <Paragraph align="center" size=".7">{Text[options.lang].selected}</Paragraph>
     </S.Interface>
   );
 }
