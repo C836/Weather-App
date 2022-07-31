@@ -1,13 +1,20 @@
-export function getDate(date: string) {
-  const week = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
-  const month = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+import { capitalize } from "./capitalize";
+
+export function getDate(date: string, lang: string) {
+
+  const format_lang = lang.split("_")[0];
+  const options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" };
 
   const today = new Date(date);
   const tomorrow = new Date(today.setDate(today.getDate() + 1));
-  
-  const current_day = week[tomorrow.getDay()];
-  const current_day_number = String(tomorrow.getDate()).padStart(2, "0");
-  const current_month = month[tomorrow.getMonth()];
+  const date_string = tomorrow
+    .toLocaleDateString(format_lang, options)
+    .replaceAll(/de |\.|\,/gi, "")
+    .split(" ")
 
-  return `${current_day}, ${current_day_number} ${current_month}`
+  const result = `${capitalize(date_string[0])}, ${date_string[1]} ${capitalize(date_string[2])}`;
+
+
+
+  return result;
 }
