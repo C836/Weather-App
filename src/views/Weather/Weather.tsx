@@ -3,7 +3,7 @@ import { WeatherConfig } from "./Weather.config";
 import { capitalize, getDegrees, getIconUrl } from "../../utils";
 import { Anchor, Headline, Paragraph } from "../../components/Text/Text.styled";
 import { history_request } from "../../services/history";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { OptionsContext } from "../../App";
 
 export function Weather({
@@ -18,6 +18,12 @@ export function Weather({
     history_request(search, lang)
     .then((response) => setHistory(response));
   };
+
+  useEffect(() => {
+    if(locationHistory) {
+      getHistory()
+    }
+  }, [lang])
 
   return (
     <S.Weather disabled={search && !locationHistory ? false : true}>

@@ -55,7 +55,7 @@ export function Home({
   useEffect(() => {
     weather_request(locationData.search, lang)
     .then(response => setLocation({...locationData, data: response}));
-  },[locationData.search])
+  },[locationData.search, lang])
 
   return (
     <S.Home disabled={locationData.search ? true : false}>
