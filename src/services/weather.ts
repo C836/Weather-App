@@ -22,8 +22,9 @@ function get_weather(weather_data: Weather_Config) {
   return result;
 }
 
-export async function weather_request(search_param: string) {
-  const url = BASE_URL + `?q=${search_param}&appid=${API_KEY}`
+export async function weather_request( search_param: string, lang: string ) {
+    
+  const url = BASE_URL + `?q=${search_param}&lang=${lang}&appid=${API_KEY}`
 
   const data = await axios.get(url)
     .then((response) => {

@@ -3,6 +3,8 @@ import { WeatherConfig } from "./Weather.config";
 import { capitalize, getDegrees, getIconUrl } from "../../utils";
 import { Anchor, Headline, Paragraph } from "../../components/Text/Text.styled";
 import { history_request } from "../../services/history";
+import { useContext } from "react";
+import { OptionsContext } from "../../App";
 
 export function Weather({
   locationData: { search, data },
@@ -10,8 +12,10 @@ export function Weather({
   setHistory,
 }: WeatherConfig) {
 
+  const { lang } = useContext(OptionsContext)
+
   const getHistory = () => {
-    history_request(search)
+    history_request(search, lang)
     .then((response) => setHistory(response));
   };
 

@@ -29,8 +29,9 @@ function get_history(history_data: History_Data_Config) {
   return result;
 }
 
-export async function history_request(search_param: string) {
-  const url = BASE_URL + `?q=${search_param}&appid=${API_KEY}`;
+export async function history_request( search_param: string, lang?: string ) {
+
+  const url = BASE_URL + `?q=${search_param}&lang=${lang}&appid=${API_KEY}`;
 
   const data = await axios.get(url).then((response) => {
     const history_data = response.data;
