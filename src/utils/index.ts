@@ -1,6 +1,6 @@
 import { capitalize } from "./capitalize";
 import { getDate } from "./getDate";
-import { getDegrees } from "./getDegrees";
+import { getTemp } from "./getTemp";
 import { getIconUrl } from "./getIconUrl";
 
-export { capitalize, getDate, getDegrees, getIconUrl };
+export { capitalize, getDate, getTemp, getIconUrl };
