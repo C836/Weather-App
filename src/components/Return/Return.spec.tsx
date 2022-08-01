@@ -12,4 +12,10 @@ describe("Return component", () => {
     const container = renderer.create(<Return />).toJSON();
     expect(container).toMatchSnapshot();
   });
+
+  it("applies styles according to passed props", () => {
+    const container = renderer.create(<Return disabled />).toJSON();
+    expect(container).toHaveStyleRule("opacity", "0");
+    expect(container).toHaveStyleRule("pointer-events", "none");
+  });
 });

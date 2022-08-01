@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface ParagraphConfig {
   size?: string;
   align?: string;
-  lineHeight?: number;
+  lineHeight?: string;
 }
 
 export const Paragraph = styled.p<ParagraphConfig>`

@@ -12,4 +12,11 @@ describe("Anchor component", () => {
     const container = renderer.create(<Anchor />).toJSON();
     expect(container).toMatchSnapshot();
   });
+
+  it("should match modifiers style rules", () => {
+    const container = renderer.create(<Anchor />).toJSON();
+    expect(container).toHaveStyleRule('text-decoration', 'underline', {
+      modifier: ':hover',
+    })
+  });
 });
