@@ -4,7 +4,7 @@ import { LocationConfig } from "../types";
 const BASE_URL = "https://api.geoapify.com/v1/geocode/autocomplete";
 const API_KEY = import.meta.env.VITE_GEOAPIFY_KEY;
 
-function get_address(locationList: LocationConfig[]) {
+function getAddress(locationList: LocationConfig[]) {
   const result = locationList.map((location) => ({
     city: location.city,
     country: location.country,
@@ -13,12 +13,12 @@ function get_address(locationList: LocationConfig[]) {
   return result;
 }
 
-export async function search_request(searchParam: string) {
+export async function searchRequest(searchParam: string) {
   const url = { url: BASE_URL + `?text=${searchParam}&apiKey=${API_KEY}` };
 
   const data = await axios(url).then((response) => {
     const locationList = response.data.features;
-    const result = get_address(locationList);
+    const result = getAddress(locationList);
     return result;
   });
 
