@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface InputConfig {
-  activeList: boolean;
+  activeList?: boolean;
 }
 
 export const Input = styled.input<InputConfig>`
