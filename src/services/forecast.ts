@@ -35,7 +35,7 @@ export async function forecastRequest(searchParam: string, lang: string) {
   const url = BASE_URL + `?q=${searchParam}&lang=${lang}&appid=${API_KEY}`;
 
   const data = await axios.get(url).then((response) => {
-    const forecastData = response.data;
+    const forecastData = response.data.list;
     const result = getForecast(forecastData);
     return result;
   });
