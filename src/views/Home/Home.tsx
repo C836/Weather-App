@@ -15,38 +15,38 @@ const Text = translations.Home;
 
 export function Home({ setData }: HomeConfig) {
   const { weatherData, options: { lang }} = useContext(WeatherContext);
-  const { search, locationList } = weatherData
+  const { search, locationList, weatherInfo } = weatherData
 
   const [input, setInput] = useState("");
 
   const Handle_Input = (event: any) => {
     const input_value = event.target.value;
 
-    if (input_value.length) {
+    if(!weatherInfo){
       setInput(input_value);
-    } else {
+    }
+
+    if (!input_value.length) {
       setData({ ...weatherData, locationList: undefined });
     }
   };
 
   useEffect(() => {
-    if (input.length > 2) {
       const timer = setTimeout(() => {
-        searchRequest(input).then((response) =>
+        if(input.length > 2) {
+          searchRequest(input).then((response) =>
           setData({ ...weatherData, locationList: response })
-        );
+        )}
       }, 200);
 
       return () => clearTimeout(timer);
-    }
   }, [input]);
 
   const Select_Option = (event: React.MouseEvent<HTMLButtonElement>) => {
     const selectedLocation = event.currentTarget.value;
 
-    setData({ ...weatherData, search: selectedLocation! });
-    setData({ ...weatherData, locationList: undefined });
     setInput("");
+    setData({ ...weatherData, search: selectedLocation, locationList: undefined})
   };
 
   useEffect(() => {
@@ -61,6 +61,7 @@ export function Home({ setData }: HomeConfig) {
       <Input
         placeholder={(Text as any)[lang].placeholder}
         activeList={locationList?.length ? true : false}
+        value={input}
         onChange={Handle_Input}
       />
 

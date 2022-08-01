@@ -40,7 +40,7 @@ export function Interface({ setData, setOptions }: InterfaceConfig) {
     if (forecast) {
       setData({ ...weatherData, forecast: undefined });
     } else {
-      setData({ ...weatherData, search: undefined });
+      setData({ ...weatherData, weatherInfo: undefined, search: undefined });
     }
   };
 
