@@ -13,6 +13,7 @@ dist-ssr
 build
 *.local
 .env
+__snapshots__
 
 # Editor directories and files
 .vscode/*
