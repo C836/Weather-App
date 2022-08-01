@@ -31,8 +31,6 @@ function App() {
   const [weatherData, setData] = useState(defaultWeatherData);
   const [options, setOptions] = useState(defaultOptions);
 
-  const { search, locationList, weatherInfo, forecast } = weatherData;
-
   return (
     <WeatherContext.Provider value={{ weatherData: weatherData, options: options }}>
       <GlobalStyled background={background} />

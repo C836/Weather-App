@@ -6,7 +6,7 @@ import { InterfaceConfig } from "./Interface.config";
 import { en, es, pt, translations, arrow } from "./../../assets/index";
 import { Language } from "../../components/index";
 
-import { OptionsContext } from "../../App";
+import { WeatherContext } from "../../App";
 import { Paragraph } from "../../components/Text/Text.styled";
 import { Switch } from "../../components/Switch/Switch.styled";
 import { Return } from "../../components/Return/Return.styled";
@@ -19,8 +19,9 @@ export const Languages = [
   { lang: "pt", img: pt },
 ];
 
-export function Interface({ searchValue, goBack, setOptions }: InterfaceConfig) {
-  const options = useContext(OptionsContext);
+export function Interface({ setData, setOptions }: InterfaceConfig) {
+  const { weatherData, options } = useContext(WeatherContext);
+  const { search, forecast } = weatherData;
 
   const changeLanguage = (event: React.MouseEvent<HTMLImageElement>) => {
     const language = event.currentTarget.alt;
@@ -29,22 +30,26 @@ export function Interface({ searchValue, goBack, setOptions }: InterfaceConfig) 
   };
 
   const changeScale = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.checked
-    const scale = input === true ? "C" : "F"
+    const input = event.target.checked;
+    const scale = input === true ? "C" : "F";
 
-    setOptions({ ...options, scale: scale})
-  }
+    setOptions({ ...options, scale: scale });
+  };
+
+  const goBack = () => {
+    if (forecast) {
+      setData({ ...weatherData, forecast: undefined });
+    } else {
+      setData({ ...weatherData, search: undefined });
+    }
+  };
 
   return (
     <S.Interface>
-      <Return
-        disabled={searchValue ? false : true}
-        onClick={goBack}
-        src={arrow}
-      />
+      <Return disabled={search ? false : true} onClick={goBack} src={arrow} />
 
       <S.ScaleSelector>
-        °F <Switch onChange={changeScale}/> °C
+        °F <Switch onChange={changeScale} /> °C
       </S.ScaleSelector>
 
       <S.LanguageSelector>

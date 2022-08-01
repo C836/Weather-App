@@ -1,7 +1,7 @@
-import { OptionsConfig } from "../../App"
+import { OptionsConfig } from "../../types";
+import { WeatherDataConfig } from "../../types";
 
 export interface InterfaceConfig {
-  searchValue: string | undefined;
-  goBack: () => void;
-  setOptions: React.Dispatch<React.SetStateAction<OptionsConfig>> 
+  setData: React.Dispatch<React.SetStateAction<WeatherDataConfig>>;
+  setOptions: React.Dispatch<React.SetStateAction<OptionsConfig>>;
 }

@@ -6,54 +6,54 @@ import { WeatherConfig } from "./Weather.config";
 import { Anchor, Headline, Paragraph } from "../../components/index";
 import { translations } from "../../assets";
 
-import { forecast_request } from "../../services/forecast";
+import { forecastRequest } from "../../services/forecast";
 
 import { capitalize, getTemp, getIconUrl } from "../../utils";
 
-import { OptionsContext } from "../../App";
+import { WeatherContext } from "../../App";
 
-const Text = translations.Weather
+const Text = translations.Weather;
 
-export function Weather({
-  locationData: { search, data },
-  locationForecast,
-  setForecast,
-}: WeatherConfig) {
+export function Weather({ setData }: WeatherConfig) {
+  const {
+    weatherData,
+    options: { lang, scale },
+  } = useContext(WeatherContext);
+  const { search, weatherInfo, forecast } = weatherData;
 
-  const { lang, scale } = useContext(OptionsContext)
-
-  const getForecast = () => {
-    forecast_request(search!, lang)
-    .then((response) => setForecast(response));
-  };
+  function getForecast() {
+    forecastRequest(search!, lang).then((response) =>
+      setData({ ...weatherData, forecast: response })
+    );
+  }
 
   useEffect(() => {
-    if(locationForecast) {
-      getForecast()
+    if (forecast) {
+      getForecast();
     }
-  }, [lang])
+  }, [lang]);
 
   return (
-    <S.Weather disabled={search && !locationForecast ? false : true}>
+    <S.Weather disabled={search && !forecast ? false : true}>
       <Headline>{search?.toUpperCase()}</Headline>
 
       <Paragraph size={"1.2rem"}>
-        {data && capitalize(data.weather[0].description)}
+        {weatherInfo && capitalize(weatherInfo?.weather[0].description)}
       </Paragraph>
 
       <S.Display>
         <Paragraph size={"4rem"}>
-          {data && getTemp(data?.main.temp, scale)}
+          {weatherInfo && getTemp(weatherInfo?.main.temp, scale)}
         </Paragraph>
 
-        <img src={data && getIconUrl(data?.weather[0].icon)}/>
+        <img src={weatherInfo && getIconUrl(weatherInfo?.weather[0].icon)} />
       </S.Display>
 
       <Paragraph size={"1.2rem"}>
         <b>MAX: </b>
-        {data && getTemp(data?.main.temp_max, scale)} 
-        <b>MIN: </b>
-        {data && getTemp(data?.main.temp_min, scale)}
+        {weatherInfo && getTemp(weatherInfo?.main.temp_max, scale)}
+         <b>MIN: </b>
+        {weatherInfo && getTemp(weatherInfo?.main.temp_min, scale)}
       </Paragraph>
 
       <Paragraph size={".75rem"} lineHeight={5}>

@@ -5,21 +5,17 @@ import { HomeConfig } from "./Home.config";
 
 import { Headline, Input, Select, Option } from "../../components/index";
 
-import { search_request } from "../../services/search";
-import { weather_request } from "../../services/weather";
+import { searchRequest } from "../../services/search";
+import { weatherRequest } from "../../services/weather";
 
-import { OptionsContext } from "../../App";
+import { WeatherContext } from "../../App";
 import { translations } from "../../assets";
 
 const Text = translations.Home;
 
-export function Home({
-  locationList,
-  locationData,
-  setList,
-  setLocation,
-}: HomeConfig) {
-  const { lang } = useContext(OptionsContext);
+export function Home({ setData }: HomeConfig) {
+  const { weatherData, options: { lang }} = useContext(WeatherContext);
+  const { search, locationList } = weatherData
 
   const [input, setInput] = useState("");
 
@@ -29,14 +25,16 @@ export function Home({
     if (input_value.length) {
       setInput(input_value);
     } else {
-      setList([]);
+      setData({ ...weatherData, locationList: undefined });
     }
   };
 
   useEffect(() => {
     if (input.length > 2) {
       const timer = setTimeout(() => {
-        search_request(input).then((data) => setList(data));
+        searchRequest(input).then((response) =>
+          setData({ ...weatherData, locationList: response })
+        );
       }, 200);
 
       return () => clearTimeout(timer);
@@ -44,21 +42,21 @@ export function Home({
   }, [input]);
 
   const Select_Option = (event: React.MouseEvent<HTMLButtonElement>) => {
-    
     const selectedLocation = event.currentTarget.value;
 
-    setLocation({ ...locationData, search: selectedLocation! });
+    setData({ ...weatherData, search: selectedLocation! });
+    setData({ ...weatherData, locationList: undefined });
     setInput("");
-    setList([]);
   };
 
   useEffect(() => {
-    weather_request(locationData.search!, lang)
-    .then(response => setLocation({...locationData, data: response}));
-  },[locationData.search, lang])
+    weatherRequest(search!, lang).then((response) =>
+      setData({ ...weatherData, weatherInfo: response })
+    );
+  }, [search, lang]);
 
   return (
-    <S.Home disabled={locationData.search ? true : false}>
+    <S.Home disabled={search ? true : false}>
       <Headline>{(Text as any)[lang].heading}</Headline>
       <Input
         placeholder={(Text as any)[lang].placeholder}
@@ -71,11 +69,7 @@ export function Home({
           const { city, country } = item;
 
           return (
-            <Option 
-            key={index} 
-            value={city || country} 
-            onClick={Select_Option}
-            >
+            <Option key={index} value={city || country} onClick={Select_Option}>
               <p>{city || country}</p>
               <small>{city && country}</small>
             </Option>
