@@ -1,3 +1,3 @@
-import { WeatherDataConfig, LocationConfig, WeatherConfig, ForecastConfig } from "./WeatherData.config"
+import { WeatherDataConfig, LocationConfig, WeatherConfig, ForecastConfig, OptionsConfig } from "./WeatherData.config"
 
-export type { WeatherDataConfig, LocationConfig, WeatherConfig, ForecastConfig }
+export type { WeatherDataConfig, LocationConfig, WeatherConfig, ForecastConfig, OptionsConfig }

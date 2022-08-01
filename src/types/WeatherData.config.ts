@@ -2,7 +2,7 @@ export interface WeatherDataConfig {
   search: string | undefined;
   locationList: LocationConfig[] | undefined;
   weatherInfo: WeatherConfig | undefined;
-  forecast: ForecastConfig | undefined;
+  forecast: ForecastConfig[] | undefined;
 }
 
 export interface LocationConfig {
@@ -24,4 +24,9 @@ export interface WeatherConfig {
 
 export interface ForecastConfig extends WeatherConfig {
   dt_txt: string;
+}
+
+export interface OptionsConfig {
+  lang: string;
+  scale: string;
 }
