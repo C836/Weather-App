@@ -14,6 +14,7 @@ build
 *.local
 .env
 __snapshots__
+coverage
 
 # Editor directories and files
 .vscode/*
