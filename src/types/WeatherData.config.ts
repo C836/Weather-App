@@ -10,6 +10,10 @@ export interface LocationConfig {
   country: string;
 }
 
+export interface ResponseLocationConfig {
+  properties: LocationConfig
+}
+
 export interface WeatherConfig {
   weather: {
     description: string;
