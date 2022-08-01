@@ -19,7 +19,7 @@ const defaultWeatherData: WeatherDataConfig = {
 
 const defaultOptions = {
   lang: "pt",
-  scale: "C",
+  scale: "F",
 };
 
 export const WeatherContext = createContext({
