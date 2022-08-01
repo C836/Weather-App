@@ -1,7 +1,7 @@
 export interface WeatherDataConfig {
   search: string | undefined;
   locationList: LocationConfig[] | undefined;
-  weather: WeatherConfig | undefined;
+  weatherInfo: WeatherConfig | undefined;
   forecast: ForecastConfig | undefined;
 }
 

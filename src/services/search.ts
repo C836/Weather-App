@@ -1,31 +1,26 @@
 import axios from "axios";
-import { Location_Config } from "./search.config";
+import { LocationConfig } from "../types";
 
+const BASE_URL = "https://api.geoapify.com/v1/geocode/autocomplete";
 const API_KEY = import.meta.env.VITE_GEOAPIFY_KEY;
 
-function get_address(location_array: Location_Config[]){
-  const result = location_array
-  .map(object => ({
-    city: object.properties.city, 
-    country: object.properties.country})
-  )
+function get_address(locationList: LocationConfig[]) {
+  const result = locationList.map((location) => ({
+    city: location.city,
+    country: location.country,
+  }));
 
-  return result
+  return result;
 }
 
-export async function search_request(search_param: string) {
-  const config = {
-    method: "get",
-    url: `https://api.geoapify.com/v1/geocode/autocomplete?text=${search_param}&apiKey=${API_KEY}`,
-    headers: {},
-  };
+export async function search_request(searchParam: string) {
+  const url = { url: BASE_URL + `?text=${searchParam}&apiKey=${API_KEY}` };
 
-  const data = await axios(config)
-    .then((response) => {
-      const location_array = response.data.features;
-      const result = get_address(location_array)
-      return result
-  })
+  const data = await axios(url).then((response) => {
+    const locationList = response.data.features;
+    const result = get_address(locationList);
+    return result;
+  });
 
   return data;
 }
