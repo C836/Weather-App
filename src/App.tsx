@@ -1,74 +1,51 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
-import 'ress'
-import GlobalStyled from './global.styled';
-import background from "./assets/img/background.jpg"
+import "ress";
+import GlobalStyled from "./global.styled";
+import background from "./assets/img/background.jpg";
 
-import { Properties_Config } from './services/search.config';
-import { Weather_Config } from './services/weather.config';
-import { Forecast_List_Config } from './services/forecast.config';
+import { Home } from "./views/Home/Home";
+import { Weather } from "./views/Weather/Weather";
+import { Forecast } from "./views/Forecast/Forecast";
+import { Interface } from "./views/Interface/Interface";
+import { WeatherDataConfig } from "./types";
 
-import { Home } from './views/Home/Home';
-import { Weather } from './views/Weather/Weather';
-import { Forecast } from './views/Forecast/Forecast';
-import { Interface }from './views/Interface/Interface';
-
-export interface OptionsConfig {
-  lang: string;
-  scale: string;
-}
+const defaultWeatherData: WeatherDataConfig = {
+  search: undefined,
+  locationList: undefined,
+  weatherInfo: undefined,
+  forecast: undefined,
+};
 
 const defaultOptions = {
   lang: "pt",
   scale: "C",
 };
 
-export const OptionsContext = createContext(defaultOptions);
+export const WeatherContext = createContext({
+  weatherData: defaultWeatherData,
+  options: defaultOptions,
+});
 
 function App() {
-  const [location_list, setList] = useState<Properties_Config[] | undefined>();
-  const [location_data, setLocation] = useState<{search: string | undefined, data: Weather_Config | undefined}>({search: undefined, data: undefined})
-  const [location_forecast, setForecast] = useState<Forecast_List_Config[]>()
+  const [weatherData, setData] = useState(defaultWeatherData);
+  const [options, setOptions] = useState(defaultOptions);
 
-  const [options, setOptions] = useState<OptionsConfig>(defaultOptions);
-
-  const goBack = () => {
-    if(location_forecast) {
-      setForecast(undefined)
-    } else {
-      setLocation({...location_data, search: undefined})
-    }
-  }
+  const { search, locationList, weatherInfo, forecast } = weatherData;
 
   return (
-    <OptionsContext.Provider value={options}>
+    <WeatherContext.Provider value={{ weatherData: weatherData, options: options }}>
       <GlobalStyled background={background} />
 
-      <Home 
-        locationList = {location_list}
-        locationData = {location_data}
-        setList = {setList}
-        setLocation = {setLocation}
-      />
+      <Home setData={setData} />
 
-      <Weather 
-        locationData = {location_data}
-        locationForecast = {location_forecast}
-        setForecast = {setForecast}
-      />
+      <Weather setData={setData} />
 
-      <Forecast
-        searchValue={location_data.search}
-        locationForecast={location_forecast}
-      />
+      <Forecast />
 
-      <Interface
-        searchValue = {location_data.search}
-        goBack={goBack}
-        setOptions={setOptions}
-      />
-    </OptionsContext.Provider>
-  )
+      <Interface setOptions={setOptions} setData={setData} />
+    </WeatherContext.Provider>
+  );
 }
 
-export default App
+export default App;
