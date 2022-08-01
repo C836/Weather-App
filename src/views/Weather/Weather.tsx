@@ -4,11 +4,11 @@ import * as S from "./Weather.styled";
 import { WeatherConfig } from "./Weather.config";
 
 import { Anchor, Headline, Paragraph } from "../../components/index";
-import { translations } from "../../assets";
+import { translations } from "../../assets/index";
 
-import { forecastRequest } from "../../services/forecast";
+import { forecastRequest } from "../../services/index";
 
-import { capitalize, getTemp, getIconUrl } from "../../utils";
+import { capitalize, getTemp, getIconUrl } from "../../utils/index";
 
 import { WeatherContext } from "../../App";
 

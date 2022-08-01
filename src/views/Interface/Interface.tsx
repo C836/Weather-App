@@ -7,9 +7,7 @@ import { en, es, pt, translations, arrow } from "./../../assets/index";
 import { Language } from "../../components/index";
 
 import { WeatherContext } from "../../App";
-import { Paragraph } from "../../components/Text/Text.styled";
-import { Switch } from "../../components/Switch/Switch.styled";
-import { Return } from "../../components/Return/Return.styled";
+import { Paragraph, Switch, Return } from "../../components/index";
 
 const Text = translations.Interface;
 

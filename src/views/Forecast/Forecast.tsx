@@ -2,8 +2,8 @@ import { useContext } from "react";
 
 import * as S from "./Forecast.styled";
 
-import { Headline, Paragraph } from "../../components/Text/Text.styled";
-import { translations } from "../../assets";
+import { Headline, Paragraph } from "../../components/index";
+import { translations } from "../../assets/index";
 
 import { capitalize, getDate, getTemp, getIconUrl } from "../../utils/index";
 

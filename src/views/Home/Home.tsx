@@ -5,8 +5,7 @@ import { HomeConfig } from "./Home.config";
 
 import { Headline, Input, Select, Option } from "../../components/index";
 
-import { searchRequest } from "../../services/search";
-import { weatherRequest } from "../../services/weather";
+import { searchRequest, weatherRequest } from "../../services/index";
 
 import { WeatherContext } from "../../App";
 import { translations } from "../../assets";
