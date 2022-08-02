@@ -12,6 +12,8 @@ import { capitalize, getTemp, getIconUrl } from "../../utils/index";
 
 import { WeatherContext } from "../../App";
 
+const WEATHER_KEY = import.meta.env.VITE_WEATHER_KEY;
+
 const Text = translations.Weather;
 
 export function Weather({ setData }: WeatherConfig) {
@@ -22,7 +24,7 @@ export function Weather({ setData }: WeatherConfig) {
   const { search, weatherInfo, forecast } = weatherData;
 
   function getForecast() {
-    forecastRequest(search!, lang).then((response) =>
+    forecastRequest(search!, lang, WEATHER_KEY).then((response) =>
       setData({ ...weatherData, forecast: response })
     );
   }
@@ -56,7 +58,7 @@ export function Weather({ setData }: WeatherConfig) {
         {weatherInfo && getTemp(weatherInfo?.main.temp_min, scale)}
       </Paragraph>
 
-      <Paragraph size={".75rem"} lineHeight={5}>
+      <Paragraph size={".75rem"} lineHeight={"5"}>
         <Anchor onClick={getForecast}>
           {(Text as any)[lang].view_forecast}
         </Anchor>

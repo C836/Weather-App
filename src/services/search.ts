@@ -2,7 +2,6 @@ import axios from "axios";
 import { ResponseLocationConfig } from "../types/WeatherData.config";
 
 const BASE_URL = "https://api.geoapify.com/v1/geocode/autocomplete";
-const API_KEY = import.meta.env.VITE_GEOAPIFY_KEY;
 
 function getAddress(locationList: ResponseLocationConfig[]) {
   const result = locationList.map((location) => ({
@@ -13,8 +12,8 @@ function getAddress(locationList: ResponseLocationConfig[]) {
   return result;
 }
 
-export async function searchRequest(searchParam: string) {
-  const url = { url: BASE_URL + `?text=${searchParam}&apiKey=${API_KEY}` };
+export async function searchRequest(searchParam: string, apiKey: string) {
+  const url = { url: BASE_URL + `?text=${searchParam}&apiKey=${apiKey}` };
 
   const data = await axios(url).then((response) => {
     const locationList = response.data.features;

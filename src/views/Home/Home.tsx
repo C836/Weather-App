@@ -10,6 +10,9 @@ import { searchRequest, weatherRequest } from "../../services/index";
 import { WeatherContext } from "../../App";
 import { translations } from "../../assets";
 
+const GEOAPIFY_KEY = import.meta.env.VITE_GEOAPIFY_KEY;
+const WEATHER_KEY = import.meta.env.VITE_WEATHER_KEY;
+
 const Text = translations.Home;
 
 export function Home({ setData }: HomeConfig) {
@@ -33,7 +36,7 @@ export function Home({ setData }: HomeConfig) {
   useEffect(() => {
       const timer = setTimeout(() => {
         if(input.length > 2) {
-          searchRequest(input).then((response) =>
+          searchRequest(input, GEOAPIFY_KEY).then((response) =>
           setData({ ...weatherData, locationList: response })
         )}
       }, 200);
@@ -49,7 +52,7 @@ export function Home({ setData }: HomeConfig) {
   };
 
   useEffect(() => {
-    weatherRequest(search!, lang).then((response) =>
+    weatherRequest(search!, lang, WEATHER_KEY).then((response) =>
       setData({ ...weatherData, weatherInfo: response })
     );
   }, [search, lang]);

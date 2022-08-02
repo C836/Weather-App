@@ -2,7 +2,6 @@ import axios from "axios";
 import { WeatherConfig } from "../types";
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-const API_KEY = import.meta.env.VITE_WEATHER_KEY;
 
 function getWeather(weatherInfo: WeatherConfig) {
   const { weather, main } = weatherInfo;
@@ -24,8 +23,8 @@ function getWeather(weatherInfo: WeatherConfig) {
   return result;
 }
 
-export async function weatherRequest(searchParam: string, lang: string) {
-  const url = BASE_URL + `?q=${searchParam}&lang=${lang}&appid=${API_KEY}`;
+export async function weatherRequest(searchParam: string, lang: string, apiKey: string) {
+  const url = BASE_URL + `?q=${searchParam}&lang=${lang}&appid=${apiKey}`;
 
   const data = await axios.get(url).then((response) => {
     const weatherData = response.data;
