@@ -12,7 +12,7 @@ Interface para previsão de tempo, com opções para troca de escala e sistema d
 <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"/>
 </div>
 
-[Web app](https://weather-app-gl.vercel.app/)<br></br><img src="src/assets/readme/layout.png">
+[Web app](https://weather-c5ctwtcyc-c836.vercel.app/)<br></br><img src="src/assets/readme/layout.png">
 
 </div>
 
@@ -41,6 +41,21 @@ A aplicação consiste em uma interface que exibe o clima do local selecionado, 
 | <img src="src/assets/readme/prev.png"> | <img src="src/assets/readme/prev1.png"> |
 
 ## 📥 Instalação
+
+Para o funcionamento correto da comunicação com a API, tenha em mãos as chaves de acesso.
+
+[Geoapify](https://www.geoapify.com/)
+[OpenWeatherApi](https://openweathermap.org/)
+
+Edite o arquivo ".env_example" localizado na raiz do projeto de acordo com suas respectivas chaves e edite o nome do arquivo apenas para ".env".
+
+```bash
+#.env
+VITE_GEOAPIFY_KEY=###
+VITE_WEATHER_KEY=###
+```
+
+---
 
 1. Faça o download como ZIP clicando neste [link](https://github.com/C836/Weather-App/archive/refs/heads/main.zip) e extraia a pasta no local de sua preferência ou siga o passo a passo para fazer a instalação através do terminal do [Git:](https://git-scm.com/)
 
