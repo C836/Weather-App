@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import * as S from "./Weather.styled";
 import { WeatherConfig } from "./Weather.config";
@@ -12,7 +12,7 @@ import { capitalize, getTemp, getIconUrl } from "../../utils/index";
 
 import { WeatherContext } from "../../App";
 
-const WEATHER_KEY = import.meta.env.VITE_WEATHER_KEY;
+const WEATHER_KEY = process.env.VITE_WEATHER_KEY;
 
 const Text = translations.Weather;
 
@@ -24,7 +24,7 @@ export function Weather({ setData }: WeatherConfig) {
   const { search, weatherInfo, forecast } = weatherData;
 
   function getForecast() {
-    forecastRequest(search!, lang, WEATHER_KEY).then((response) =>
+    forecastRequest(search!, lang, WEATHER_KEY!).then((response) =>
       setData({ ...weatherData, forecast: response })
     );
   }
