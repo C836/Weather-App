@@ -18,9 +18,6 @@ export async function searchRequest(searchParam: string, apiKey: string) {
   const data = await axios(url).then((response) => {
     const locationList = response.data.features;
     const result = getAddress(locationList);
-
-    console.log(locationList)
-    console.log(result)
     return result;
   });
 
