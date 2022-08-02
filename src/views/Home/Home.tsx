@@ -52,7 +52,7 @@ export function Home({ setData }: HomeConfig) {
   };
 
   useEffect(() => {
-    weatherRequest(search!, lang, WEATHER_KEY).then((response) =>
+    weatherRequest(search!, lang, WEATHER_KEY!).then((response) =>
       setData({ ...weatherData, weatherInfo: response })
     );
   }, [search, lang]);
