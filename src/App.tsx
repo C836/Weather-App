@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 
-import "ress";
 import GlobalStyled from "./global.styled";
 import background from "./assets/img/background.jpg";
 
